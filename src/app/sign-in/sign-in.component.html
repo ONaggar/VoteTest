@@ -51,20 +51,21 @@
               <h4 class="card-title">Sign In 
               </h4>
 
-              <form action="#" >
-                <div class="form-group">
-                  <label for="user">Your ID:</label>
-                  <input #username type="text" class="form-control" id="user" >
-                </div>
- <div class="form-group">
-   <label for="name">Your Name:</label>
-   <input type="text" class="form-control" id="name">  <p> aldkbasjgdhvjhsj {{x}}</p>
- </div>
- <div class="form-group">
-   <label for="pwd">Password:</label>
-   <input #password type="password" class="form-control" id="pwd">
- </div>
- <button type="submit" (click) = signIn(username.value, password.value); user.username='' user.password='' class="btn btn-primary">Sign In</button>
+<form #signInForm="ngForm" >
+  <div class="form-group">
+  <label for="user">Your ID:</label>
+  <input type="text" class="form-control" [(ngModel)]="model.username" name="username" id="user">
+
+  <label for="name">Your Name:</label>
+  <input type="text" class="form-control" id="name" >  <p> aldkbasjgdhvjhsj {{x}}</p>
+
+  <label for="pwd">Password:</label>
+  <input type="password" [(ngModel)]="model.password" name="password" class="form-control" id="pwd">
+    {{x}}              
+    <button type="submit" (click)="signIn();" class="btn btn-primary">Sign In</button>
+
+  </div>
+ 
 </form>
 
               </div>

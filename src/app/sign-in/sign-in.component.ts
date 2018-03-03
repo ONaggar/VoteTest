@@ -9,31 +9,28 @@ import { SignInService } from '../sign-in.service'
 })
 export class SignInComponent implements OnInit {
 
+  user: userData;
+  fetchedUser: userData;
+  x: string;
+
+  model = new userData();
   constructor(
     private signInService: SignInService
   ) { }
 
-  signIn(username: string, password: string): void {
-    username = username.trim();
-    password = password.trim();
-    if(!username || !password){return ; }
-    this.signInService.signIn(this.user).subscribe(success => this.success = success)
-    this.x='jjj';
+  signIn(): void {
+    this.signInService.signIn(this.model).subscribe(newUser => {
+      this.fetchedUser = newUser;
+    });
+
+    if(this.model.username === this.fetchedUser.username && this.model.password === this.fetchedUser.password)
+      this.x='Signed in successfully';
+    else
+      this.x='Incorrect username or password';
   }
 
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
-      });
-  }
 
   ngOnInit() {
-    this.user={username:'dd', password: 'ss'};
-    //this.x='sss';
   }
 
 
