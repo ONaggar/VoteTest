@@ -1,3 +1,9 @@
 <div>
+    <li *ngFor="let user of users">
+         <span class="badge">{{user.id}}</span>
+        <!--<button class="delete" title="delete hero"
+        (click)="delete(hero)">x</button>-->
+     </li>
     <button type="submit" (click)="addUser();" class="btn btn-primary">add</button>
+    <button type="submit" (click)="addSubject();" class="btn btn-primary">add Subject</button>
   </div>

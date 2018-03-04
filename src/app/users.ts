@@ -1,4 +1,4 @@
-import { userData } from './userData'
+import { userData } from './userData';
 
 export const USERS: userData[] = [
     { id: 'user1', password: '1234' },

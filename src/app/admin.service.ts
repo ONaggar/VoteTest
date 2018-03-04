@@ -16,9 +16,18 @@ const httpOptions = {
 @Injectable()
 export class AdminService {
   private usersUrl = 'api/users';  // URL to web api
-  private subjectsUrl = '';
+  private subjectsUrl = 'api/subjects';
 
   constructor(private http: HttpClient ,private messageService: MessageService) { }
+
+  getUsers() : Observable<userData[]> {
+    return this.http.get<userData[]>(this.usersUrl)
+      .pipe(
+        tap(users => this.log(`fetched users`)),
+        catchError(this.handleError('getUsers', []))
+      );
+  }
+
   addUser (user: userData): Observable<userData> {
   return this.http.post<userData>(this.usersUrl, user, httpOptions).pipe(
     tap((user: userData) => this.log(`added user w/ id=${user.id}`)),
@@ -53,8 +62,8 @@ return this.http.post<subjectData>(this.subjectsUrl, subject, httpOptions).pipe(
 );
 }
 
-deleteSubject (subject: subjectData | number): Observable<subjectData> {
-  const id = typeof subject === 'number' ? subject : subject.id;
+deleteSubject (subject: subjectData | string): Observable<subjectData> {
+  const id = typeof subject === 'string' ? subject : subject.id;
   const url = `${this.subjectsUrl}/${id}`;
 
   return this.http.delete<subjectData>(url, httpOptions).pipe(

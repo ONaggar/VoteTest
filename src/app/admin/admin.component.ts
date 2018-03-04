@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { userData } from '../userData';
 import { subjectData } from '../subjectData';
 import { AdminService } from '../admin.service'
+import { USERS } from '../users';
 
 @Component({
   selector: 'app-admin',
@@ -14,13 +15,18 @@ export class AdminComponent implements OnInit {
 
   user = new userData();
   subject = new subjectData();
-
+  users: userData[]; 
 
   constructor(
     private adminService: AdminService
   ) { }
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  getUsers(): void {
+    this.users = USERS;
   }
 
   addUser(): void {
@@ -47,6 +53,8 @@ export class AdminComponent implements OnInit {
 // ------------ subject -----------------------
 
   addSubject(): void {
+    this.subject.id = "sub1";
+    this.subject.description = "pres";
        this.adminService.addSubject(this.subject).subscribe(newSubject => {
          this.fetchedSubject = newSubject;
        });

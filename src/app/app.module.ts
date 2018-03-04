@@ -15,7 +15,9 @@ import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './message.service';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
-import { AdminService } from './admin.service'
+import { AdminService } from './admin.service';
+import { SubjectsComponent } from './subjects/subjects.component';
+import { SubjectsService } from './subjects.service'
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AdminService } from './admin.service'
     SignInComponent,
     MessagesComponent,
     HomeComponent,
-    AdminComponent
+    AdminComponent,
+    SubjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ HttpClientInMemoryWebApiModule.forRoot(
   providers: [
     SignInService,
     MessageService,
-    AdminService
+    AdminService,
+    SubjectsService
   ],
   bootstrap: [AppComponent]
 })

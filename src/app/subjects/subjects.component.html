@@ -1,0 +1,22 @@
+<h2> Subjects </h2>
+<!--<ul class="heroes">
+  <li *ngFor="let subject of subjects">
+    <a routerLink="/detail/{{subjects.id}}">
+      <span class="badge">{{Subjects.id}}</span>
+    </a>
+    <!--<button class="delete" title="delete hero"
+    (click)="delete(hero)">x</button>-->
+ <!-- </li>
+</ul>-->
+
+<div *ngIf="subject">
+  <h2>{{ subject.description | uppercase }} Details</h2>
+  <div><span>id: </span>{{subject.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="subject.name" placeholder="name"/>
+    </label>
+  </div>
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>

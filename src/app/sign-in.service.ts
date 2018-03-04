@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
-import { USERS } from './users'
-import { userData } from './userData'
+import { USERS } from './users';
+import { userData } from './userData';
 
 
 
@@ -16,7 +16,7 @@ export class SignInService {
 
   fetchedUser: userData;
 
-  constructor(private http: HttpClient ,private messageService: MessageService) { }
+  constructor(private http: HttpClient , private messageService: MessageService) { }
 
   /*
   signIn(user: userData): Observable<userData> {
@@ -24,14 +24,12 @@ export class SignInService {
   }
   */
 
-  
   signIn(user: userData): Observable<userData> {
     const url = `${this.usersUrl}/${user.id}`;
     return this.http.get<userData>(url).pipe(tap(_ => this.log(`fetched user id=${user.id}`)),
     catchError(this.handleError<userData>(`getUser id=${user.id}`))
     );
   }
-    
 
   /**
  * Handle Http operation that failed.
