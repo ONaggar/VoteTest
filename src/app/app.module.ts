@@ -12,16 +12,19 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './message.service';
+import { AdminComponent } from './admin/admin.component';
+import { AdminService } from './admin.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    MessagesComponent
+    MessagesComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule, 
+    FormsModule,
     HttpClientModule,
 // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
 // and returns simulated server responses.
@@ -32,7 +35,8 @@ HttpClientInMemoryWebApiModule.forRoot(
   ],
   providers: [
     SignInService,
-    MessageService
+    MessageService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })
