@@ -1,27 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { userData } from '../userData';
 import { SignInService } from '../sign-in.service'
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
-export class SignInComponent implements OnInit {
+export class AdminComponent implements OnInit {
+
+  constructor(
+    private signInService: SignInService
+  ) { }
 
   fetchedUser: userData;
   x: string;
   y: string;
 
   user = new userData();
-  constructor(
-    private signInService: SignInService
-  ) { }
-
   signIn(): void {
     this.signInService.signIn(this.user).subscribe(newUser => {
       this.fetchedUser = newUser;
-      
       if(this.user.id == this.fetchedUser.id && this.user.password === this.fetchedUser.password)
         this.x='Signed in successfully';
       else
@@ -32,7 +31,6 @@ export class SignInComponent implements OnInit {
     
     //this.x = this.user.password + '  ' + this.fetchedUser.password;
   }
-
 
   ngOnInit() {
   }
