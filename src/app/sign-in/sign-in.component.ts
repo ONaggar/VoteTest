@@ -12,6 +12,7 @@ export class SignInComponent implements OnInit {
   user: userData;
   fetchedUser: userData;
   x: string;
+  y: string;
 
   model = new userData();
   constructor(
@@ -21,18 +22,18 @@ export class SignInComponent implements OnInit {
   signIn(): void {
     this.signInService.signIn(this.model).subscribe(newUser => {
       this.fetchedUser = newUser;
+      if(this.model.id == this.fetchedUser.id && this.model.password === this.fetchedUser.password)
+        this.x='Signed in successfully';
+      else
+        this.x='Incorrect username or password';
+      this.y = this.model.id + this.fetchedUser.id + this.model.password + '  ' + this.fetchedUser.password;
     });
 
-    if(this.model.username === this.fetchedUser.username && this.model.password === this.fetchedUser.password)
-      this.x='Signed in successfully';
-    else
-      this.x='Incorrect username or password';
+    
+    //this.x = this.model.password + '  ' + this.fetchedUser.password;
   }
 
 
   ngOnInit() {
   }
-
-
-
 }

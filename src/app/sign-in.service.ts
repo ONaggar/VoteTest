@@ -8,6 +8,7 @@ import { USERS } from './users'
 import { userData } from './userData'
 
 
+
 @Injectable()
 export class SignInService {
 
@@ -17,16 +18,20 @@ export class SignInService {
 
   constructor(private http: HttpClient ,private messageService: MessageService) { }
 
-  /*signIn(user: userData): Observable<userData> {
-    return of (USERS.find(rUser => rUser.username === user.username));
-  }*/
-
+  /*
   signIn(user: userData): Observable<userData> {
-    const url = `${this.usersUrl}/${user.username}`;
-    return this.http.get<userData>(url).pipe(tap(_ => this.log(`fetched user id=${user.username}`)),
-    catchError(this.handleError<userData>(`getHero id=${user.username}`))
+    return of (USERS.find(rUser => rUser.username === user.username));
+  }
+  */
+
+  
+  signIn(user: userData): Observable<userData> {
+    const url = `${this.usersUrl}/${user.id}`;
+    return this.http.get<userData>(url).pipe(tap(_ => this.log(`fetched user id=${user.id}`)),
+    catchError(this.handleError<userData>(`getUser id=${user.id}`))
     );
   }
+    
 
   /**
  * Handle Http operation that failed.
@@ -50,7 +55,7 @@ private handleError<T> (operation = 'operation', result?: T) {
 
   /** Log a HeroService message with the MessageService */
 private log(message: string) {
-  this.messageService.add('HeroService: ' + message);
+  this.messageService.add('UserService: ' + message);
 }
 
   /*

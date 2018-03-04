@@ -1,8 +1,8 @@
 import { userData } from './userData'
 
 export const USERS: userData[] = [
-    { username: 'user1', password: 'ayhaga1' },
-    { username: 'user2', password: 'ayhaga' },
-    { username: 'user3', password: 'ayhaga' },
-    { username: 'user4', password: 'ayhaga' }
+    { id: 'user1', password: '1234' },
+    { id: 'user2', password: '1234' },
+    { id: 'user3', password: '1234' },
+    { id: 'user4', password: '1234' }
 ];

@@ -11,6 +11,7 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { MessagesComponent } from './messages/messages.component';
+import { MessageService } from './message.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ HttpClientInMemoryWebApiModule.forRoot(
 )
   ],
   providers: [
-    SignInService
+    SignInService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
