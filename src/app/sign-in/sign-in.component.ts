@@ -9,28 +9,28 @@ import { SignInService } from '../sign-in.service'
 })
 export class SignInComponent implements OnInit {
 
-  user: userData;
   fetchedUser: userData;
   x: string;
   y: string;
 
-  model = new userData();
+  user = new userData();
   constructor(
     private signInService: SignInService
   ) { }
 
   signIn(): void {
-    this.signInService.signIn(this.model).subscribe(newUser => {
+    this.signInService.signIn(this.user).subscribe(newUser => {
       this.fetchedUser = newUser;
-      if(this.model.id == this.fetchedUser.id && this.model.password === this.fetchedUser.password)
+      
+      if(this.user.id == this.fetchedUser.id && this.user.password === this.fetchedUser.password)
         this.x='Signed in successfully';
       else
         this.x='Incorrect username or password';
-      this.y = this.model.id + this.fetchedUser.id + this.model.password + '  ' + this.fetchedUser.password;
+      //this.y = this.user.id + this.fetchedUser.id + this.user.password + '  ' + this.fetchedUser.password;
     });
 
     
-    //this.x = this.model.password + '  ' + this.fetchedUser.password;
+    //this.x = this.user.password + '  ' + this.fetchedUser.password;
   }
 
 

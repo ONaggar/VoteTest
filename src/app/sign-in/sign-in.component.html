@@ -32,7 +32,7 @@
 
   <div class="container-fluid" style="margin-top:40px;padding:0px;">
 
-      <img class="" src="Image/IBMvote.png" alt="IBM" style="width:300px;border:0;"  >
+      <img class="" src="assets\img\IBMvote.png" alt="IBM" style="width:300px;border:0;"  >
 
       <div class="container-fluid jumbotron" style="position:absolute;top:0px;z-index:-1;height:50px;padding:0px;margin-top:60px">
 
@@ -44,7 +44,7 @@
       <div class="card">
         <div class="row ">
           <div class="col-md-4">
-            <img class="card-img-top mx-auto d-block " src="Image/signin.png" alt="register" style="width:200px;border:0;position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">
+            <img class="card-img-top mx-auto d-block " src="assets\img\signin.png" alt="register" style="width:200px;border:0;position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">
           </div>
           <div class="col-md-8 px-3" >
             <div class="card-body px-3">
@@ -54,16 +54,19 @@
 <form #signInForm="ngForm" >
   <div class="form-group" >
   <label for="user">Your ID:</label>
-  <input type="text" class="form-control" [(ngModel)]="model.id" name="username" id="user">
+  <input type="text" class="form-control" [(ngModel)]="user.id" name="username" id="user">
 
-  <label for="name">Your Name:</label>
-  <input type="text" class="form-control" id="name" >  <p> aldkbasjgdhvjhsj {{x}}</p>
+<!-- <label for="name">Your Name:</label>
+  <input type="text" class="form-control" id="name" >  <p> aldkbasjgdhvjhsj {{x}}</p> -->
 
   <label for="pwd">Password:</label>
-  <input type="password" [(ngModel)]="model.password" name="password" class="form-control" id="pwd">
-    {{x}}              
+  <input type="password" [(ngModel)]="user.password" name="password" class="form-control" id="pwd">
+              
+    <br>
     <button type="submit" (click)="signIn();" class="btn btn-primary">Sign In</button>
-
+    <br>
+    <br>
+    {{x}}
   </div>
  
 </form>
