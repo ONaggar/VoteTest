@@ -6,6 +6,7 @@ import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import { USERS } from './users'
 import { userData } from './userData'
+import { subjectData } from './subjectData'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,7 +16,7 @@ const httpOptions = {
 @Injectable()
 export class AdminService {
   private usersUrl = 'api/users';  // URL to web api
-
+  private subjectsUrl = '';
 
   constructor(private http: HttpClient ,private messageService: MessageService) { }
   addUser (user: userData): Observable<userData> {
@@ -34,13 +35,31 @@ updateUser (user: userData): Observable<any> {
 }
 
 /** DELETE: delete the hero from the server */
-deleteHero (user: userData | number): Observable<userData> {
+deleteUser (user: userData | number): Observable<userData> {
   const id = typeof user === 'number' ? user : user.id;
   const url = `${this.usersUrl}/${id}`;
 
   return this.http.delete<userData>(url, httpOptions).pipe(
     tap(_ => this.log(`deleted user id=${id}`)),
     catchError(this.handleError<userData>('deleteUser'))
+  );
+}
+
+
+addSubject (subject: subjectData): Observable<subjectData> {
+return this.http.post<subjectData>(this.subjectsUrl, subject, httpOptions).pipe(
+  tap((subject: subjectData) => this.log(`added subject w/ id=${subject.id}`)),
+  catchError(this.handleError<subjectData>('addsubject'))
+);
+}
+
+deleteSubject (subject: subjectData | number): Observable<subjectData> {
+  const id = typeof subject === 'number' ? subject : subject.id;
+  const url = `${this.subjectsUrl}/${id}`;
+
+  return this.http.delete<subjectData>(url, httpOptions).pipe(
+    tap(_ => this.log(`deleted subject id=${id}`)),
+    catchError(this.handleError<subjectData>('deleteSubject'))
   );
 }
 

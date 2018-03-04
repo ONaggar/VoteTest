@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { userData } from '../userData';
+import { subjectData } from '../subjectData';
 import { AdminService } from '../admin.service'
 
 @Component({
@@ -9,10 +10,10 @@ import { AdminService } from '../admin.service'
 })
 export class AdminComponent implements OnInit {
   fetchedUser: userData;
-  x: string;
-  y: string;
+  fetchedSubject: subjectData;
 
   user = new userData();
+  subject = new subjectData();
 
 
   constructor(
@@ -30,17 +31,30 @@ export class AdminComponent implements OnInit {
     });
    }
 
-   updateUser(): void {
+  updateUser(): void {
 
      this.adminService.updateUser(this.user).subscribe(newUser => {
        this.fetchedUser = newUser;
      });
     }
 
-  /*  deleteUser(): void {
+  deleteUser(): void {
       this.adminService.deleteUser(this.user).subscribe(newUser => {
         this.fetchedUser = newUser;
       });
-     }
-*/
+    }
+
+// ------------ subject -----------------------
+
+  addSubject(): void {
+       this.adminService.addSubject(this.subject).subscribe(newSubject => {
+         this.fetchedSubject = newSubject;
+       });
+      }
+
+  deleteSubject(): void {
+         this.adminService.deleteSubject(this.subject).subscribe(newSubject => {
+           this.fetchedSubject = newSubject;
+         });
+        }
 }
